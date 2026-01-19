@@ -37,6 +37,53 @@ headerLogoConatiner.addEventListener('click', () => {
   location.href = 'index.html'
 })
 
+$(document).ready(function () {
 
+  const toast = $('#toast');
+  const submitBtn = $('.contact__btn');
 
+  function showToast(message, type) {
+    toast
+      .removeClass('success error loading show')
+      .addClass(type)
+      .text(message)
+      .addClass('show');
 
+    // Auto-hide after 4s (except loading)
+    if (type !== 'loading') {
+      setTimeout(() => {
+        toast.removeClass('show');
+      }, 4000);
+    }
+  }
+
+  $('#contact-form').on('submit', function (event) {
+    event.preventDefault();
+
+    submitBtn.prop('disabled', true);
+    showToast('Sending message...', 'loading');
+
+    var formData = new FormData(this);
+    formData.append('service_id', 'service_yggrsv8');
+    formData.append('template_id', 'template_xu3pa1n');
+    formData.append('user_id', '8HAPNVDFFORoUPWnW');
+
+    $.ajax('https://api.emailjs.com/api/v1.0/email/send-form', {
+      type: 'POST',
+      data: formData,
+      contentType: false,
+      processData: false
+    })
+    .done(function () {
+      showToast('Message sent successfully!', 'success');
+      $('#contact-form')[0].reset();
+    })
+    .fail(function () {
+      showToast('Failed to send message. Please try again.', 'error');
+    })
+    .always(function () {
+      submitBtn.prop('disabled', false);
+    });
+  });
+
+});

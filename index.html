@@ -18,6 +18,7 @@
     
   </head>
   <body>
+    <div id="toast" class="toast"></div>
     <header class="header">
       <div class="header__content">
         <div class="header__logo-container">
@@ -254,6 +255,7 @@ A Python developer and tech enthusiast who loves learning by building real-world
           </span>
         </h2>
         <div class="contact__form-container">
+          <div id="form-status" class="contact__form-status"></div>
           <form id="contact-form" class="contact__form">
             <div class="contact__form-field">
               <label class="contact__form-label" for="name">Name</label>
@@ -343,50 +345,22 @@ A Python developer and tech enthusiast who loves learning by building real-world
         </div>
 
         <div class="main-footer__lower">
-            
-          <a rel="noreferrer" target="_blank" href="#"
-            >ASHOKKUMAR S</a
-          >
-        </div>
+          Made with ❤️ by 
+  <a
+    rel="noreferrer"
+    target="_blank"
+    href="https://linkedin.com/in/ashokkumar0306"
+    class="footer-name-link"
+  >
+    ASHOKKUMAR S
+  </a>
+</div>
+
       </div>
     </footer>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-
-<script>
-  $(document).ready(function () {
-
-    console.log("JS + jQuery loaded");
-
-    $('#contact-form').on('submit', function (event) {
-      event.preventDefault(); // stop page reload
-
-      alert("Form intercepted ✔");
-
-      var formData = new FormData(this);
-      formData.append('service_id', 'service_yggrsv8');
-      formData.append('template_id', 'template_xu3pa1n');
-      formData.append('user_id', '8HAPNVDFFORoUPWnW');
-
-      $.ajax('https://api.emailjs.com/api/v1.0/email/send-form', {
-        type: 'POST',
-        data: formData,
-        contentType: false,
-        processData: false
-      })
-      .done(function () {
-        alert('Your message has been sent successfully!');
-        $('#contact-form')[0].reset();
-      })
-      .fail(function (error) {
-        alert('Oops... Something went wrong.');
-        console.error(error);
-      });
-    });
-
-  });
-</script>
 
 <script src="./index.js"></script>
 
